@@ -71,3 +71,6 @@ if($windisk -or $coding){
 if($diskinfo -or $systeminfo){
   choco install crystaldiskinfo -y
 }  
+
+## Autoupdate with Task in Windows
+choco install choco-upgrade-all-at-startup -y

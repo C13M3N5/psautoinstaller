@@ -1,5 +1,5 @@
 # psautoinstaller
-Automatisches Powershell Installationscript
+Automatisches Powershell Installationskript
 
 # Installation
 

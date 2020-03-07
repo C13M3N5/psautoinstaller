@@ -6,7 +6,7 @@ if($all){
   $systeminfo = $true
 }
 
-Install Chocolatey
+## Install Chocolatey
 Set-ExecutionPolicy Bypass -Scope Process -Force; iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex
 
 ## 7zip
@@ -49,7 +49,7 @@ if($steam -or $games){
   ## Steam Client
   choco install steam -y
 }
-if($teamspeak -or $games)
+if($teamspeak -or $games){
   ## Teamspeak Client
   choco install teamspeak -y
 }

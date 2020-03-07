@@ -57,10 +57,20 @@ if($uplay -or $games){
   ## uplay Client
   choco install uplay -y
 }
-if($uplay -or $games){
+if($discord -or $games){
   ## discord Client
   choco install discord -y
 }
+if($origin -or $games){
+  ## origin Client
+  choco install origin -y
+}
+if($playnite){
+  ## playnite Client
+  choco install playnite -y
+}
+choco install 
+
 
 ## Social Media
 # Twitch

@@ -71,4 +71,3 @@ if($windisk -or $coding){
 if($diskinfo -or $systeminfo){
   choco install crystaldiskinfo -y
 }  
-

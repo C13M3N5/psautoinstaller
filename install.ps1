@@ -53,6 +53,14 @@ if($teamspeak -or $games){
   ## Teamspeak Client
   choco install teamspeak -y
 }
+if($uplay -or $games){
+  ## uplay Client
+  choco install uplay -y
+}
+if($uplay -or $games){
+  ## discord Client
+  choco install discord -y
+}
 
 ## Social Media
 # Twitch

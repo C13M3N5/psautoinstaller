@@ -21,7 +21,7 @@ Die Programme über das Skript installiert wurden werden automatisch geupdatet, 
 
 ##### Das install.ps1 Skript startet nicht!
 Das kann passieren, wenn die Skriptausführung verhindert wurde. Dieses ist eine Windows Standardeinstellung.
-Starte dann das Skript in der PowerShell dann so in dem Ordner: 
+Starte das Skript in der PowerShell dann so in dem Ordner: 
 ```
 Set-ExecutionPolicy Bypass -Scope Process -Force; .\install.ps1
 ```

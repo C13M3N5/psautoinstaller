@@ -70,6 +70,7 @@ $outarray = @()
 foreach($row in $csvdata){
 	$install = $row.install
 	$programm = $row.programm
+	$programm
 	$description = $row.description
 	$timestamp = Get-Date -Format "dd.MM.yyyy-HH:mm"
 	if($install -eq 1){

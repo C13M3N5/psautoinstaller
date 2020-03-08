@@ -17,12 +17,9 @@ function Intall-Programm($program){
 	$checkprogram = $chocolistinstall | Where-object { $_.ToLower().StartsWith($program.ToLower()) }
 	if($checkprogram -eq $null){
 		choco install $program -y
-		# Fehlercode von Choco auswerten
-		if($LASTEXITCODE){
-			return 1
-		}else{
-			return 0
-		}
+		# Fehlercode von Choco zurückgeben
+		return $LASTEXITCODE
+		
 	}
 	return 2
 
@@ -32,12 +29,10 @@ function Unintall-Programm($program){
 	$checkprogram = $chocolistinstall | Where-object { $_.ToLower().StartsWith($program.ToLower()) }
 	if($checkprogram -ne $null){
 		choco uninstall $program -y --remove-dependencies
-		# Fehlercode von Choco auswerten
-		if($LASTEXITCODE){
-			return 1
-		}else{
-			return 0
-		}
+		# Fehlercode von Choco zurückgeben
+		return $LASTEXITCODE
+		
+		
 	}
 	return 2
 }
@@ -75,28 +70,31 @@ foreach($row in $csvdata){
 	$timestamp = Get-Date -Format "dd.MM.yyyy-HH:mm"
 	if($install -eq 1){
 		$installreturn = Intall-Programm $programm 
-		if($installreturn -eq 0){
-			$status = $timestamp + " - Erfolgreich installiert"
-		}elseif($installreturn -eq 1){
-			$status = $timestamp + " - Fehler bei der Installation"
-		}elseif($installreturn -eq 2){
-			$status = $timestamp + " - schon installiert"
-		}
 	
 	}elseif($install -eq 0){
 		$installreturn = Unintall-Programm $programm 
-		if($installreturn -eq 0){
-			$status = $timestamp + " - Erfolgreich deinstalliert"
-		}elseif($installreturn -eq 1){
-			$status = $timestamp + " - Fehler bei der Deinstallation"
-		}elseif($installreturn -eq 2){
-			$status = $timestamp + " - nicht installiert"
-		}
-		
+	
 	}else{
-		$status = $timestamp + " - Keine Auswahl für install definiert"
+		$installreturn = 99
 	
 	}
+	
+	if($installreturn -eq 0){
+		$status = $timestamp + " - Aktion erfolgreich abgeschlossen"
+	}elseif($installreturn -eq 1){
+		$status = $timestamp + " - Fehler bei der Aktion"
+	}elseif($installreturn -eq 2){
+		$status = $timestamp + " - keine Anpassung"
+	}elseif($installreturn -eq 99){
+		$status = $timestamp + " - Keine Auswahl für install definiert"
+	}elseif($installreturn -eq 1603){
+		$status = $timestamp + " - Programm wahrscheinlich schon manuell installiert"
+	}else{
+		$status = $timestamp + " - Aktion erfolgreich abgeschlossen"
+	}
+	
+	
+	
 	$outarray += New-Object PsObject -property @{
 		'programm' = $programm
 		'install' = $install

@@ -1,5 +1,5 @@
 # psautoinstaller
-Automatisches Powershell Installationskript
+Automatisches Powershell Installationskript mit chocolatey
 
 # Installation
 
@@ -22,3 +22,6 @@ Die Programme über das Skript installiert wurden werden automatisch geupdatet, 
 - Das install.ps1 Skript startet nicht!
 Das kann passieren, wenn die Skriptausführung verhindert wurde. Dieses ist eine Windows Standardeinstellung.
 Starte dann das Skript in der PowerShell dann so in dem Ordner: Set-ExecutionPolicy Bypass -Scope Process -Force; .\install.ps1
+
+- Das Skript gibt keine Rückmeldung!
+Schaue nach der Ausführung in die CSV-Datei. Dort findest du dann die Rückmeldungen des Skripts zum jeden Programm.

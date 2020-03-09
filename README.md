@@ -3,9 +3,10 @@ Automatisches Powershell Installationskript mit chocolatey
 
 # Installation
 
-- Download git
-- in der CSV-Datei auswählen welche Programme installiert werden. (1 = installieren / 0 = deinstallieren)
-- install.ps1 mit Administrativen Powershell starten (s.a. FAQs)
+- Download und Entpacken des Skripts 
+- in der CSV-Datei auswählen welche Programme installiert werden sollen. (1 = installieren / 0 = deinstallieren)
+- Administrativen Powershell im Verzeichnis öffnen 
+- .\install.ps1 starten (s.a. FAQs)
 - Es werden die ausgewählen Programme installiert, falls diese noch nicht installiert sind
 - Automatisches Update wird bei Systemstart per Geplanter Task ausgeführt
 

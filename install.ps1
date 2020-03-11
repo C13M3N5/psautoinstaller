@@ -11,41 +11,36 @@
 # Get the programm.csv
 $csvdatapath = $PSScriptRoot + "\programs.csv"
 
-
-
+# Installiert Programm über choco
 function Intall-Programm($program){
 	$checkprogram = $chocolistinstall | Where-object { $_.ToLower().StartsWith($program.ToLower()) }
 	if($checkprogram -eq $null){
 		choco install $program -y
 		# Fehlercode von Choco zurückgeben
 		return $LASTEXITCODE
-		
 	}
 	return 2
-
 }
 
+# Deinstalliert Programm über choco
 function Unintall-Programm($program){
 	$checkprogram = $chocolistinstall | Where-object { $_.ToLower().StartsWith($program.ToLower()) }
 	if($checkprogram -ne $null){
 		choco uninstall $program -y --remove-dependencies
 		# Fehlercode von Choco zurückgeben
 		return $LASTEXITCODE
-		
-		
 	}
 	return 2
 }
 
-
-
+# Prüfen, ob CSV vorhanden ist
 if(!(Test-Path $csvdatapath)){
 	"CSV Datei nicht gefunden! Bitte im Verzeichnis des Skripts ablegen."
 	exit
 }
-
-$testchoco = powershell choco -v
-if(-not($testchoco)){
+# Prüfen, ob choco installiert ist
+$chocopath = $env:ProgramData + "\chocolatey\choco.exe"
+if (!(Test-Path $chocopath)) {
     Write-Output "Seems Chocolatey is not installed, installing now"
     Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
@@ -108,13 +103,6 @@ foreach($row in $csvdata){
 
 #export to .csv file
 $outarray | Select-Object "programm", "install", "description", "status" | export-csv $csvdatapath -delimiter ";" -NoTypeInformation
-
-#$officepakt = "7zip","notepadplusplus","office365proplus","googlechrome","paint.net","firefox","adblockpluschrome","adblockplusfirefox","adblockplusie"
-#$keepasspakt = "keepass","keepass-keepasshttp","chromelpass-chrome"
-#$codingpakt = "notepadplusplus","winscp","putty","vscode","win32diskimager"
-#$gamingpakt = "steam","teamspeak","discord","uplay","battle.net","Origin" 
-#$socialpakt = "twitch"
-#$systempakt = "7zip","ccleaner","crystaldiskinfo"
 
 
 
